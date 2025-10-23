@@ -1,4 +1,4 @@
-package cs341project1;
+package TaskPack;
 
 public class Task {
 
