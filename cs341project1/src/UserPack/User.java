@@ -22,7 +22,4 @@ public class User {
 		tasks.addTask(t);
 	}
 	
-	
-	
-	
 }

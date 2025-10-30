@@ -24,4 +24,12 @@ public class Task {
 		else {return "Incomplete";} // incomplete = false
 	}
 	
+	public boolean statusReport() {
+		return status;
+	} 
+	
+	public void setStatus(boolean status) {
+		this.status=status;
+	}
+	
 }
