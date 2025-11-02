@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -16,7 +17,7 @@ import TaskPack.Task;
 public class TaskFrame extends JFrame{
 	private String username;
 	   private DefaultListModel<Task> model;
-	   private JList<Task> taskList;
+	   public JList<Task> taskList;
 	   
 	   public TaskFrame(String username) {
 	       this.username = username;
@@ -45,8 +46,9 @@ public class TaskFrame extends JFrame{
 	       //add btn
 	       addBtn.addActionListener(e -> {
 	           String desc = taskField.getText().trim();
+	           int id = model.getSize()+1;
 	           if (!desc.isEmpty()) {
-	               Task task = new Task(desc);
+	               Task task = new Task(desc,id);
 	               TaskStorage.addTask(username, task);
 	               refreshTasks();
 	               taskField.setText("");
@@ -54,12 +56,26 @@ public class TaskFrame extends JFrame{
 	       });
 	       //remove btn
 	       removeBtn.addActionListener(e -> {
-	           Task selected = taskList.getSelectedValue(); //get task that was clicked on
+	    	   dispose();
+	    	   // i tried making a frame to ask the user to input a number (this number would be connected to a spot on the task list
+	    	   //which would then remove the selected number from the list, but it didn't pan out 
+	    	   
+	    	  // RemoveFrame remy = new RemoveFrame();
+	    	   //remy.setVisible(true);
+	    	  // remy.getIndex();
+	    	   int id = Integer.parseInt(taskField.getText()); //gets id of task from textbox
+	    	   
+	    	   Task selected = taskList.getSelectedValue(); //get task that was clicked on
 	           if (selected != null) { 
 	               TaskStorage.removeTask(username, selected);
 	               refreshTasks();
 	           }
 	           else {selected.update("button works");}
+	       
+	    	   //Task selected = taskList.get;
+	    	   
+	    	   taskList.remove(id);
+	       
 	       });
 	       //complete btn
 	       completeBtn.addActionListener(e -> {
@@ -81,12 +97,12 @@ public class TaskFrame extends JFrame{
 	   // Wrapper for better display     individual task display??
 	   class TaskDisplayWrapper extends Task {
 	       public TaskDisplayWrapper(Task t) {
-	           super(t.getDesc());
+	           super(t.getDesc(),t.getId());
 	           if (t.statusReport()) setStatus(true);
 	       }
 	       @Override
 	       public String toString() {
-	       	return (//getStatus()
+	       	return getId()+(//getStatus()
 	       			statusReport() ? 
 	       			"[✓] " : "[ ] "
 	       			)+ getDesc();

@@ -3,10 +3,12 @@ package TaskPack;
 public class Task {
 
 	private String desc; 
+	private int id; //helps for removing and editing
 	private boolean status; //is boolean for now, but could be in percentages/double later 
 	
-	public Task(String desc) {
+	public Task(String desc, int id) {
 		this.desc=desc;
+		this.id=id;
 	}
 	
 	public String getDesc() {
@@ -30,6 +32,13 @@ public class Task {
 	
 	public void setStatus(boolean status) {
 		this.status=status;
+	}
+	
+	public void setId(int id) {
+		this.id=id;
+	}
+	public int getId() {
+		return id;
 	}
 	
 }
