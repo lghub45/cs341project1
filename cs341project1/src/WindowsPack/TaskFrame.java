@@ -51,7 +51,7 @@ public class TaskFrame extends JFrame{
 	               Task task = new Task(desc,id);
 	               TaskStorage.addTask(username, task);
 	               refreshTasks();
-	               taskField.setText(task+" is the task we added"); //used to be ""
+	               taskField.setText("");
 	               
 	           }
 	       });
@@ -78,13 +78,11 @@ public class TaskFrame extends JFrame{
 	       completeBtn.addActionListener(e -> {
 	           Task selected = taskList.getSelectedValue();
 	           if (selected != null) {
-	        	   if (selected.statusReport()) {selected.setStatus(false);} //if the task is already complete this sets it back to false
-	        	   else{selected.setStatus(true);} //if task isn't complete this button sets it to complete
-	              
+	        	   TaskStorage.statusChange(username, selected);
 	           }
 	           refreshTasks();
 	           //test
-               taskField.setText(selected.getStatus()+" should be true");
+              // taskField.setText(selected.getStatus()+" should be true");
 	       });
 	       refreshTasks();
 	   }

@@ -22,9 +22,9 @@ public class Task {
 	
 	public String getStatus() {
 		if (status==true) { //complete = true
-			return "Complete";
+			return "[✓]";
 		}
-		else {return "Incomplete";} // incomplete = false
+		else {return "[]";} // incomplete = false
 	}
 	
 	public boolean statusReport() {
@@ -33,6 +33,11 @@ public class Task {
 	
 	public void setStatus(boolean status) {
 		this.status=status;
+	}
+	
+	public void statusSwap() {
+		if (status == false) {status=true;}
+		else {status = false;}
 	}
 	
 	public void setId(int id) {

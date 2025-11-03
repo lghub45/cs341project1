@@ -29,5 +29,15 @@ public class TaskStorage {
         		}
         	}
         	}
-}
+    }
+    public static void statusChange(String username, Task task) {
+    	List<Task> tasks = taskMap.get(username);
+    	if (tasks!= null) {
+    		for(int i=0; i<tasks.size();i++) { //goes through the list and changes status of task with same Id 
+        		if (task.getId()==tasks.get(i).getId()) {
+        			tasks.get(i).statusSwap();
+        		}
+        	}
+    	}
+    }
 }
