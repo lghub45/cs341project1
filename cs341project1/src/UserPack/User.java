@@ -18,8 +18,8 @@ public class User {
 		return username;
 	}
 	
-	public void addTask(Task t) {
-		tasks.addTask(t);
-	}
+	//public void addTask(Task t) {
+		//tasks.addTask(t);
+	//}
 	
 }

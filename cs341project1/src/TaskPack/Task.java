@@ -9,6 +9,7 @@ public class Task {
 	public Task(String desc, int id) {
 		this.desc=desc;
 		this.id=id;
+		status=false;
 	}
 	
 	public String getDesc() {
@@ -38,7 +39,7 @@ public class Task {
 		this.id=id;
 	}
 	public int getId() {
-		return id;
+	return id;
 	}
 	
 }

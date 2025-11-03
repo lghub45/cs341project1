@@ -51,39 +51,40 @@ public class TaskFrame extends JFrame{
 	               Task task = new Task(desc,id);
 	               TaskStorage.addTask(username, task);
 	               refreshTasks();
-	               taskField.setText("");
+	               taskField.setText(task+" is the task we added"); //used to be ""
+	               
 	           }
 	       });
 	       //remove btn
 	       removeBtn.addActionListener(e -> {
-	    	   dispose();
+	    	   //dispose();
 	    	   // i tried making a frame to ask the user to input a number (this number would be connected to a spot on the task list
 	    	   //which would then remove the selected number from the list, but it didn't pan out 
-	    	   
+	    	    	   
 	    	  // RemoveFrame remy = new RemoveFrame();
 	    	   //remy.setVisible(true);
 	    	  // remy.getIndex();
-	    	   int id = Integer.parseInt(taskField.getText()); //gets id of task from textbox
+	    	  // int id = Integer.parseInt(taskField.getText()); //gets id of task from textbox
 	    	   
 	    	   Task selected = taskList.getSelectedValue(); //get task that was clicked on
-	           if (selected != null) { 
-	               TaskStorage.removeTask(username, selected);
+	    	   if (selected != null) { 
+	               TaskStorage.removeTask(username, selected); 
 	               refreshTasks();
 	           }
-	           else {selected.update("button works");}
-	       
-	    	   //Task selected = taskList.get;
-	    	   
-	    	   taskList.remove(id);
+	           else { return;}
 	       
 	       });
 	       //complete btn
 	       completeBtn.addActionListener(e -> {
 	           Task selected = taskList.getSelectedValue();
 	           if (selected != null) {
-	               selected.setStatus(true);
-	               refreshTasks();
+	        	   if (selected.statusReport()) {selected.setStatus(false);} //if the task is already complete this sets it back to false
+	        	   else{selected.setStatus(true);} //if task isn't complete this button sets it to complete
+	              
 	           }
+	           refreshTasks();
+	           //test
+               taskField.setText(selected.getStatus()+" should be true");
 	       });
 	       refreshTasks();
 	   }
@@ -102,10 +103,12 @@ public class TaskFrame extends JFrame{
 	       }
 	       @Override
 	       public String toString() {
-	       	return getId()+(//getStatus()
-	       			statusReport() ? 
-	       			"[✓] " : "[ ] "
-	       			)+ getDesc();
+	    	   
+	       	return //(//getStatus()
+	       			//statusReport() ? 
+	       			//"[✓] " : "[ ] "
+	       			//)+
+	       			getStatus() + getDesc();
 	       }
 
 }

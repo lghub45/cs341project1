@@ -22,6 +22,12 @@ public class TaskStorage {
 
     public static void removeTask(String username, Task task) {
         List<Task> tasks = taskMap.get(username);
-        if (tasks != null) tasks.remove(task);
+        if (tasks != null) {
+        	for(int i=0; i<tasks.size();i++) { //goes through the list and deletes the task with same Id 
+        		if (task.getId()==tasks.get(i).getId()) {
+        			tasks.remove(tasks.get(i));
+        		}
+        	}
+        	}
 }
 }
