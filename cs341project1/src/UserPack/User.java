@@ -18,6 +18,10 @@ public class User {
 		return username;
 	}
 	
+	public String getPass() {
+		return password;
+	}
+	
 	//public void addTask(Task t) {
 		//tasks.addTask(t);
 	//}

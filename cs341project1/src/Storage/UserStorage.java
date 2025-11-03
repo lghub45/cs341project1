@@ -1,5 +1,8 @@
 package Storage;
 import java.util.HashMap;
+import java.util.List;
+
+import TaskPack.Task;
 import UserPack.User;
 
 public class UserStorage {
@@ -15,4 +18,10 @@ public class UserStorage {
     public static boolean login(String username, String password) {
         return users.containsKey(username) && users.get(username).equals(password);
     }
+    
+    //returns a password
+    public static String findUserPass(String username) {
+    	return users.get(username); 
+    }
+    
 }
