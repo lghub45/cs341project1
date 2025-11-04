@@ -60,6 +60,9 @@ public class RegisterFrame extends JFrame{
 	               new LoginFrame().setVisible(true);
 	           } else {
 	               JOptionPane.showMessageDialog(this, "User already exists");
+	               //for testing purposes
+	               dispose();
+	               new LoginFrame().setVisible(true);
 	           }
 	       });
 	   }

@@ -121,6 +121,7 @@ public class SendWindow extends TaskFrame{
 		    	     refreshTasks();
 		    	     taskField2.setText("");
 		    	     
+		    	    // if (TaskStorage.get)
 		    	    }
 		         }
 		    	    

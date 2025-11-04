@@ -1,6 +1,5 @@
-package Storage;
+package Storage; //github program
 
-import java.sql.*; 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -61,3 +60,4 @@ public class DB {
             st.execute("CREATE INDEX IF NOT EXISTS idx_tasks_user_id ON tasks(user_id);");
         }
     }
+}

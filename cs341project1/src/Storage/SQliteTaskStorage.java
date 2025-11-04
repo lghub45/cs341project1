@@ -13,7 +13,7 @@ import java.util.List;
  * - removeTaskById(username, id)
  * - setTaskStatus(username, id, status)
  */
-public class TaskStorage {
+public class SQliteTaskStorage {
 
     private static final String SELECT_TASKS_SQL =
             "SELECT t.id, t.description, t.completed FROM tasks t JOIN users u ON t.user_id = u.id WHERE u.username = ? ORDER BY t.id";
