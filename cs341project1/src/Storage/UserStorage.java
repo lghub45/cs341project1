@@ -67,7 +67,7 @@ public class UserStorage {
                         String hash = rs.getString("password_hash");
                         return hash;
                     } else {
-                        return "errorA passwrods dont match";
+                        return "errorA passwords dont match";
                     }
                 }
             } catch (Exception e) {
@@ -77,8 +77,9 @@ public class UserStorage {
     }
     
     
+    
     // Simple SHA-256 hash helper
-    private static String sha256(String input) {
+    public static String sha256(String input) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] out = md.digest(input.getBytes("UTF-8"));

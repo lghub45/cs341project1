@@ -22,8 +22,5 @@ public class User {
 		return password;
 	}
 	
-	//public void addTask(Task t) {
-		//tasks.addTask(t);
-	//}
 	
 }

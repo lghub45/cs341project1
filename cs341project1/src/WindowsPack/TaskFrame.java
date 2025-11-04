@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import Storage.TaskStorage;
 import TaskPack.Task;
+import java.awt.Font;
 
 public class TaskFrame extends JFrame {
     private String username;
@@ -35,11 +36,11 @@ public class TaskFrame extends JFrame {
         getContentPane().add(taskField);
 
         JButton addBtn = new JButton("Add");
-        addBtn.setBounds(220, 200, 70, 25);
+        addBtn.setBounds(215, 200, 70, 25);
         getContentPane().add(addBtn);
 
         JButton removeBtn = new JButton("Remove");
-        removeBtn.setBounds(300, 200, 90, 25);
+        removeBtn.setBounds(289, 200, 98, 25);
         getContentPane().add(removeBtn);
 
         JButton completeBtn = new JButton("Toggle Complete");
@@ -47,8 +48,13 @@ public class TaskFrame extends JFrame {
         getContentPane().add(completeBtn);
 
         JButton sendBtn = new JButton("Send");
-        sendBtn.setBounds(220, 235, 77, 19);
+        sendBtn.setBounds(215, 230, 70, 25);
         getContentPane().add(sendBtn);
+        
+        JButton logoutBtn = new JButton("Switch User");
+        logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 10));
+        logoutBtn.setBounds(289, 230, 98, 25);
+        getContentPane().add(logoutBtn);
         
         // add button: persist task into DB
         addBtn.addActionListener(e -> {
@@ -80,6 +86,7 @@ public class TaskFrame extends JFrame {
                         TaskStorage.removeTaskById(username, id);
                         refreshTasks();
                         taskField.setText("");
+                        
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(this, "Select a task or type a numeric id to remove.");
                     }
@@ -105,6 +112,12 @@ public class TaskFrame extends JFrame {
 	       sendBtn.addActionListener(e -> {
 		               new SendWindow(username).setVisible(true);
 	       });
+	  
+	       //logout btn: takes you back to loginframe
+	       logoutBtn.addActionListener(e -> {
+               new LoginFrame().setVisible(true);
+               dispose();
+   });
         
         refreshTasks();
     }
@@ -127,7 +140,8 @@ public class TaskFrame extends JFrame {
 
         @Override
         public String toString() {
-            return getId() + (statusReport() ? "[✓] " : "[ ] ") + getDesc();
+            return (statusReport() ? "[✓] " : "[ ] ") + getDesc(); 
+            //used to display id as well but weird glitch where kratos has tasks 1-3 masterchief has 4 & 6 and kratos gets 5
         }
     }
 }

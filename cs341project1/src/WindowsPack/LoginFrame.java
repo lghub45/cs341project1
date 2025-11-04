@@ -69,8 +69,8 @@ public class LoginFrame extends JFrame{
 	       });
 	   }
 	   // ✅ Optional main() for testing this frame directly
-	   public static void main(String[] args) {
-	       SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
+	  // public static void main(String[] args) {
+	    //   SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
 
-	   }
+	   //}
 }
