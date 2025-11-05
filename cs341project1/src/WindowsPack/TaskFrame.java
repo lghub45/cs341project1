@@ -21,7 +21,7 @@ public class TaskFrame extends JFrame {
     public TaskFrame(String username) {
         this.username = username;
         setTitle("Tasks - " + username);
-        setSize(400, 300);
+        setSize(428, 338);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
@@ -48,13 +48,17 @@ public class TaskFrame extends JFrame {
         getContentPane().add(completeBtn);
 
         JButton sendBtn = new JButton("Send");
-        sendBtn.setBounds(215, 230, 70, 25);
+        sendBtn.setBounds(215, 225, 70, 25);
         getContentPane().add(sendBtn);
         
         JButton logoutBtn = new JButton("Switch User");
         logoutBtn.setFont(new Font("Tahoma", Font.BOLD, 10));
-        logoutBtn.setBounds(289, 230, 98, 25);
+        logoutBtn.setBounds(240, 266, 98, 25);
         getContentPane().add(logoutBtn);
+        
+        JButton editBtn = new JButton("Edit Task");
+        editBtn.setBounds(289, 225, 98, 25);
+        getContentPane().add(editBtn);
         
         // add button: persist task into DB
         addBtn.addActionListener(e -> {
@@ -108,6 +112,20 @@ public class TaskFrame extends JFrame {
             }
         });
 
+        //edit task btn
+        editBtn.addActionListener(e -> {
+            Task selected = taskList.getSelectedValue();
+            String desc = taskField.getText().trim();  //uses input from the text box to update a selected task
+            if (selected != null && desc!="") {
+                 selected.update(desc);//should update the desc of selected which we can then input as our updated task
+                 
+                TaskStorage.newObjective(username, selected.getId(), selected);
+                refreshTasks();
+            } else {
+                JOptionPane.showMessageDialog(this, "Input a new task in the task bar, then select a task and click edit");
+            }
+        });
+        
         //send btn
 	       sendBtn.addActionListener(e -> {
 		               new SendWindow(username).setVisible(true);

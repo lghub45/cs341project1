@@ -67,6 +67,13 @@ public class TaskStorage {
             e.printStackTrace();
         }
     }
+    
+    //this is a TEMPORARY solution (will remove the old task and replace it with a new task)
+    //we'll need something to get the task from the hash and somehow change its description
+    public static void newObjective(String username, int id, Task task) {
+    	removeTaskById(username,id);
+    	addTask(username,task);
+    }
 
     public static void removeTaskById(String username, int id) {
         try (Connection conn = DB.getInstance().getConnection();
