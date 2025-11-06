@@ -1,0 +1,22 @@
+ private float hueShift = 0f;
+	    private Color color1 = new Color(72, 61, 139);
+	    private Color color2 = new Color(123, 104, 238);
+	  
+	   public RegisterFrame() {
+		   JPanel gradientPanel = new JPanel() {
+	            @Override
+	            protected void paintComponent(Graphics g) {
+	                Graphics2D g2 = (Graphics2D) g.create();
+	                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	                GradientPaint gp = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
+	                g2.setPaint(gp);
+	                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25);
+
+	                // Subtle drop shadow
+	                g2.setColor(new Color(0, 0, 0, 60));
+	                g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 25, 25);
+	                g2.dispose();
+	            }
+	        };
+	        gradientPanel.setLayout(null);
+	        setContentPane(gradientPanel);
